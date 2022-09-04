@@ -44,9 +44,9 @@ const handleExpiredWebToken = err => new AppError("Your token has expired! Pleas
 export default function globalErrorHandler(err,req,res,next){
     err.statusCode = err.statusCode || 500;
     err.status = err.status || "error";
-    if(process.env.NODE_ENV === "development"){
+    if(process.env.NODE_ENV === "production"){
         SendErrorDev(err,res);
-    }else if(process.env.NODE_ENV=== "production"){
+    }else if(process.env.NODE_ENV=== "development"){
         let error = {...err};
         if(err.name==='CastError') error = handleCastErrorDB(error)
         if(err.code===11000) error = handleDuplicateErrorDB(error)

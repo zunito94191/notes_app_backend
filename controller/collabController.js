@@ -27,7 +27,7 @@ export const sendMail = catchAsync(async(req,res,next)=>{
         from: "neelaksh_g@outlook.com", // sender address
         to: req.body.email, // list of receivers
         subject: `Document shared with you ${title}`, // Subject line
-        html:'<div><p>'+req.user.name+'('+req.user.email+') has invited you to '+view+' the following doc <a href="https://notes-app-361513.el.r.appspot.com/note' + access+req.body.noteId+ '">playverse-notes</a></p></div>'
+        html:'<div><p>'+req.user.name+'('+req.user.email+') has invited you to '+view+' the following doc <a href="https://notes-app-361513.el.r.appspot.com/note/' + access+req.body.noteId+ '">playverse-notes</a></p></div>'
         // plain text body
       });}};
       const note = await noteModel.findOne({include:{model:userModel,attributes:["name","email","photo"]},where:{id:req.body.noteId}})
